@@ -14,4 +14,5 @@ PlatformWeb 🎮
 You can try and play the game live on itch.io:
 
 https://elaf-saleh.itch.io/platformweb
+
 ​Developed by Elaf Saleh
