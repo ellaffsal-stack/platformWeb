@@ -1,0 +1,33 @@
+GDRE Tools v2.6.4
+Windows 10.0.19045, NVIDIA GeForce MX230, vulkan
+Opening file: C:/Users/elaf/Downloads/index.pck
+Loaded 44 imported files
+Detected Engine Version: 4.6.3
+Detected Bytecode Revision: 4.5.0-stable (ebc36a7)
+Verified 94 files, no errors detected!
+Extracted 94 files, no errors detected!
+Saved project config.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     12
+Scripts not decompiled:                 0
+Imported resources for export session:  44
+Successfully converted:                 44
+Lossy:                                  4
+Rewrote metadata:                       13
+Non-importable conversions:             0
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 4.6.3 to edit the project.
+
+*******************************************************************************
+

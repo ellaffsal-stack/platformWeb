@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bh6du0tb0h1wb"]
+
+[ext_resource type="Script" uid="uid://uoowcwaphtq2" path="res://Spike/spike.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1rnahg1ia00e" path="res://tilemap_packed.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5nmf"]
+size = Vector2(20, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dohfi"]
+size = Vector2(18, 7)
+
+[node name="Spike" type="Area2D" unique_id=2097736566]
+script = ExtResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1853129489]
+position = Vector2(0, -10.495)
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(210, 42, 21, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1954227235]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_q5nmf")
+debug_color = Color(0.96862745, 0, 0, 0.16862746)
+
+[node name="StaticBody" type="StaticBody2D" parent="." unique_id=1423842921]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody" unique_id=1985686648]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_dohfi")
+debug_color = Color(0, 0.6, 0.69803923, 0.05490196)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

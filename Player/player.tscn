@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://dbrj3dkgufahn"]
+
+[ext_resource type="Script" uid="uid://c68tdfhlo6ra1" path="res://Player/player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1rnahg1ia00e" path="res://tilemap_packed.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://ckoj70ok18k3i" path="res://Jump9.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://ecewoj634jux" path="res://Player/Hit7.wav" id="4"]
+[ext_resource type="FontFile" uid="uid://bjqyxkrp8dcm1" path="res://UI/Pixel Game.otf" id="5"]
+[ext_resource type="Texture2D" uid="uid://ddq5c8ecqruvt" path="res://Player/Health.png" id="6"]
+[ext_resource type="PackedScene" uid="uid://g8kq2xsy24xq" path="res://UI/Pause Menu.tscn" id="7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mhv4"]
+size = Vector2(14, 20)
+
+[sub_resource type="Animation" id="Animation_4ntmi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(399, 42, 21, 21)]
+}
+
+[sub_resource type="Animation" id="Animation_btcbx"]
+resource_name = "jump"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.06666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(441, 42, 21, 21)]
+}
+
+[sub_resource type="Animation" id="Animation_gwnis"]
+resource_name = "move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(588, 42, 21, 21), Rect2(609, 42, 21, 21)]
+}
+
+[sub_resource type="Animation" id="Animation_k53q1"]
+resource_name = "stand"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(399, 42, 21, 21)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhl08"]
+_data = {
+&"RESET": SubResource("Animation_4ntmi"),
+&"jump": SubResource("Animation_btcbx"),
+&"move": SubResource("Animation_gwnis"),
+&"stand": SubResource("Animation_k53q1")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_k53q1"]
+font = ExtResource("5")
+font_size = 26
+font_color = Color(0.49803922, 0.87058824, 0.5372549, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhl08"]
+bg_color = Color(0, 0, 0, 0.41568628)
+anti_aliasing = false
+anti_aliasing_size = 3.498
+
+[sub_resource type="LabelSettings" id="LabelSettings_vtle1"]
+font = ExtResource("5")
+font_size = 38
+font_color = Color(1, 0, 0, 1)
+outline_size = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_od3ui"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00tjw"]
+
+[sub_resource type="Curve" id="Curve_4ntmi"]
+_data = [Vector2(0.016949154, 0.98214895), 0.0, 0.0, 0, 0, Vector2(0.6101695, 0.99107444), 0.0, 0.0, 0, 0, Vector2(0.9830508, 0.20562994), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_btcbx"]
+offsets = PackedFloat32Array(0, 0.40640393, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.9607843, 1, 1, 1, 0.7529412)
+
+[sub_resource type="Curve" id="Curve_fhl08"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.59322035, 0.99107444), 0.0, 0.0, 0, 0, Vector2(1, 0.00034332275), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_vtle1"]
+colors = PackedColorArray(1, 1, 1, 1, 0.6550534, 0.6550533, 0.65505326, 1)
+
+[sub_resource type="Gradient" id="Gradient_od3ui"]
+colors = PackedColorArray(0.7919991, 0.79199916, 0.7919991, 1, 1, 1, 1, 1)
+
+[node name="player" type="CharacterBody2D" unique_id=431861467 groups=["player"]]
+script = ExtResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=475302629]
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(399, 42, 21, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236370734]
+shape = SubResource("RectangleShape2D_3mhv4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=57838614]
+position_smoothing_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1891602917]
+libraries/ = SubResource("AnimationLibrary_fhl08")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1724350552]
+stream = ExtResource("3")
+volume_db = -10.0
+
+[node name="Damage Sound" type="AudioStreamPlayer" parent="." unique_id=1600236891]
+stream = ExtResource("4")
+volume_db = -10.0
+bus = &"Sound Effect"
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=978698472]
+
+[node name="Label" type="Label" parent="UI" unique_id=933205336]
+offset_left = 88.0
+offset_top = 11.0
+offset_right = 128.0
+offset_bottom = 38.0
+text = "12"
+label_settings = SubResource("LabelSettings_k53q1")
+
+[node name="Label2" type="Label" parent="UI" unique_id=1782142539]
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 75.0
+offset_bottom = 34.0
+text = "النقاط :"
+label_settings = SubResource("LabelSettings_k53q1")
+
+[node name="Health" type="CanvasLayer" parent="UI" unique_id=2024808332]
+
+[node name="SpriteHealth" type="Sprite2D" parent="UI/Health" unique_id=1326741320]
+position = Vector2(35, 11)
+texture = ExtResource("6")
+vframes = 4
+
+[node name="You died" type="CanvasLayer" parent="UI" unique_id=712071612]
+process_mode = 3
+visible = false
+
+[node name="Background" type="Panel" parent="UI/You died" unique_id=1527297452]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = -77.0
+offset_right = 159.5
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fhl08")
+
+[node name="You died" type="Label" parent="UI/You died" unique_id=737721026]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.41400003
+anchor_right = 0.5
+anchor_bottom = 0.41400003
+offset_left = -34.0
+offset_top = -5.7800064
+offset_right = 34.0
+offset_bottom = 17.219994
+grow_horizontal = 2
+grow_vertical = 2
+text = "You died"
+label_settings = SubResource("LabelSettings_vtle1")
+
+[node name="Try again" type="Button" parent="UI/You died" unique_id=1966104555]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.532
+anchor_right = 0.5
+anchor_bottom = 0.532
+offset_left = -4.0
+offset_top = 15.360001
+offset_right = 4.0
+offset_bottom = 23.36
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8627451, 0.8117647, 0, 1)
+theme_override_colors/font_hover_color = Color(0.6164434, 0.5791453, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_00tjw")
+text = "Try again"
+
+[node name="Exit" type="Button" parent="UI/You died" unique_id=1419706340]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.532
+anchor_right = 0.5
+anchor_bottom = 0.532
+offset_left = -36.0
+offset_top = 36.36
+offset_right = 36.0
+offset_bottom = 57.36
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8627451, 0.8117647, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_00tjw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_od3ui")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_00tjw")
+text = "Exit"
+
+[node name="pause Mneu" parent="UI" unique_id=1551377134 instance=ExtResource("7")]
+visible = false
+
+[node name="particles Nodes" type="Node2D" parent="." unique_id=671948029]
+
+[node name="Move Particles" type="CPUParticles2D" parent="particles Nodes" unique_id=856421701]
+position = Vector2(0, 9)
+emitting = false
+draw_order = 1
+gravity = Vector2(0, 20)
+angle_min = -200.0
+angle_max = 200.0
+scale_amount_min = 0.5
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_4ntmi")
+color = Color(1, 0.8937493, 0.81744176, 1)
+color_ramp = SubResource("Gradient_btcbx")
+
+[node name="Die Particles" type="CPUParticles2D" parent="particles Nodes" unique_id=1942196058]
+process_mode = 3
+modulate = Color(1, 1, 1, 0.7529412)
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 40)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_fhl08")
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("Gradient_vtle1")
+color_initial_ramp = SubResource("Gradient_od3ui")
+
+[connection signal="pressed" from="UI/You died/Try again" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="UI/You died/Exit" to="." method="_on_exit_pressed"]

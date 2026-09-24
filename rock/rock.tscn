@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cjq8xmlbg2vp4"]
+
+[ext_resource type="Script" uid="uid://d26crgo5ey536" path="res://rock/rock.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1rnahg1ia00e" path="res://tilemap_packed.png" id="2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5kusr"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5kusr"]
+b = Vector2(0, 248)
+
+[node name="Area2D" type="Area2D" unique_id=239565371]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=151224036]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_5kusr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=277567619]
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(546, 525, 21, 21)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=923014098]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2038499021]
+shape = SubResource("SegmentShape2D_5kusr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

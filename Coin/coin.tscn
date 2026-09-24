@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bymnwfndwt6dj"]
+
+[ext_resource type="Script" uid="uid://bkw1spyghe4iv" path="res://Coin/coin.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1rnahg1ia00e" path="res://tilemap_packed.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://dfhi44cu7puom" path="res://Coin/Pickup6.wav" id="3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewyp4"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_ewyp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_0wmpe"]
+resource_name = "move"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmlog"]
+_data = {
+&"RESET": SubResource("Animation_ewyp4"),
+&"move": SubResource("Animation_0wmpe")
+}
+
+[node name="Coin" type="Area2D" unique_id=589411387]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=729923303]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_ewyp4")
+debug_color = Color(0, 0.6, 0.69803923, 0.17254902)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1321534658]
+position = Vector2(0, -5)
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(378, 42, 21, 21)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=271652640]
+libraries/ = SubResource("AnimationLibrary_rmlog")
+
+[node name="Coin Sound" type="AudioStreamPlayer" parent="." unique_id=2029515775]
+stream = ExtResource("3")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

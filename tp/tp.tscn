@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cvhtciaotpmsr"]
+
+[ext_resource type="Script" uid="uid://b232mdl4ixjb0" path="res://tp/tp.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1rnahg1ia00e" path="res://tilemap_packed.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfktq"]
+size = Vector2(20, 30)
+
+[node name="TP" type="Area2D" unique_id=1819336628]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1235541403]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_rfktq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1336972954]
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(357, 105, 21, 21)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=1880423295]
+position = Vector2(0, -21)
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(336, 105, 21, 21)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
