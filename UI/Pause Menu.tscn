@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://g8kq2xsy24xq"]
 
 [ext_resource type="Script" uid="uid://d1j3ndujnjrmn" path="res://UI/pause_menu.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://bjqyxkrp8dcm1" path="res://UI/Pixel Game.otf" id="2"]
+[ext_resource type="FontFile" uid="uid://ehpeia82hqed" path="res://UI/Pixel Game.ttf" id="2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7ovk"]
 

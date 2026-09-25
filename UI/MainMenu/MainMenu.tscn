@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://brudywh37bdkj"]
 
 [ext_resource type="Script" uid="uid://bvhtr4cpnrq1u" path="res://UI/MainMenu/main_menu.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://bjqyxkrp8dcm1" path="res://UI/Pixel Game.otf" id="2"]
+[ext_resource type="FontFile" uid="uid://ehpeia82hqed" path="res://UI/Pixel Game.ttf" id="2"]
 [ext_resource type="Texture2D" uid="uid://c1rnahg1ia00e" path="res://tilemap_packed.png" id="3"]
 
 [sub_resource type="Gradient" id="Gradient_fw0vt"]
